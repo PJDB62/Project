@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class home extends CI_Controller {
+class Home extends CI_Controller {
 
 	public function __construct()
 	{
@@ -8,10 +8,12 @@ class home extends CI_Controller {
 	}
 
 	public function index()
-	{
-		$data = array();
-		$data['temp'] = 'site/home/index';
-		$this->load->view('site/layout', $data);
+	{	
+		$this->load->model('Product_model');
+		$product = $this->Product_model->get_data();
+		$data['product']=$product;
+		$data['temp']='site/home/index';
+		$this->load->view('site/layout',$data);
 	}
 
 }
